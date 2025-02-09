@@ -174,6 +174,13 @@ pub fn getProcAddress(procname: [*:0]const u8) callconv(.c) ?GlProc {
 }
 extern fn glfwGetProcAddress(procname: [*:0]const u8) callconv(.c) ?GlProc;
 
+pub const PlatformType = enum(c_int) { any = 0x00060000, win32 = 0x00060001, cocoa = 0x00060002, wayland = 0x00060003, x11 = 0x00060004, null = 0x00060005 };
+
+pub fn getPlatform() PlatformType {
+    return glfwGetPlatform();
+}
+extern fn glfwGetPlatform() PlatformType;
+
 //--------------------------------------------------------------------------------------------------
 //
 // Keyboard/Mouse
